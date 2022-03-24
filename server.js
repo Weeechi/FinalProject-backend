@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3003;
 //Database
 //___________________
 // How to connect to the database either via heroku or locally
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/capstoneDatabase';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://0.0.0.0:27017/myFirstDatabase';
 
 // Connect to Mongo &
 // Fix Depreciation Warnings from Mongoose
@@ -47,7 +47,7 @@ app.use(cors()) // add a cors header to the backend so the react app can access 
 
 
 //___________________
-// Routes
+// Route
 //___________________
 //localhost:3000
 app.get('/' , (req, res) => {

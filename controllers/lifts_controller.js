@@ -10,7 +10,7 @@ router.post('/', (req, res)=>{
 
 router.get('/', (req, res)=>{
     Lift.find({}, (err, foundLift)=>{
-        res.join(foundLift);
+        res.json(foundLift);
     })
 })
 
@@ -21,7 +21,7 @@ router.delete('/:id', (req, res)=>{
 })
 
 router.put('/:id', (req, res)=>{
-    LiftfindByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedLift)=>{
+    Lift.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedLift)=>{
         res.json(updatedLift);
     })
 })
