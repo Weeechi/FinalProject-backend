@@ -26,9 +26,9 @@ router.put('/:id', (req, res)=>{
     })
 })
 
-router.get('/', (req, res)=>{
-    res.send('index')
-});
+// router.get('/', (req, res)=>{
+//     res.send('index')
+// });
 
 
 module.exports = router;

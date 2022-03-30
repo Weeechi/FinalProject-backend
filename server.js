@@ -2,13 +2,14 @@
 //Dependencies
 //___________________
 const express = require('express');
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const app = express ();
 const db = mongoose.connection;
 const liftController = require('./controllers/lifts_controller')
 require('dotenv').config();
 // const  = require ('')
 const cors = require('cors')
+const morgan = require('morgan')
 //___________________
 //Port
 //___________________
@@ -19,12 +20,14 @@ const PORT = process.env.PORT || 3003;
 //Database
 //___________________
 // How to connect to the database either via heroku or locally
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://0.0.0.0:27017/myFirstDatabase';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Connect to Mongo &
 // Fix Depreciation Warnings from Mongoose
 // May or may not need these depending on your Mongoose version
 mongoose.connect(MONGODB_URI);
+// mongoose.connect('mongodb://localhost:27017/prpal');
+
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
@@ -41,7 +44,9 @@ app.use(express.static('public'));
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
 app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
-app.use(cors()) // add a cors header to the backend so the react app can access it from another domain or port.
+app.use(cors())
+app.use(morgan('dev')) 
+ // add a cors header to the backend so the react app can access it from another domain or port.
  app.use('/lift', liftController ) //access to lift controller, also add a prepend "lift" to the URL
 
 
